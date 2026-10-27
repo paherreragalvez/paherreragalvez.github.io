@@ -3,20 +3,25 @@ project:
   output-dir: docs
 
 website:
-  title: "sitio-web"
+  title: "Pablo AHG"
   navbar:
     left:
       - href: index.qmd
-        text: Home
-      - about.qmd
+        text: Inicio
+#    - href: blog.qmd
+#        text: Blog
+#      - href: tutoriales.qmd
+#        text: Tutoriales
+    right:
+      - icon: github
+        href: https://github.com/paherreragalvez
+      - icon: linkedin
+        href: https://www.linkedin.com/in/paherreragalvez/
 
 format:
   html:
-    theme:
-      - cosmo
-      - brand
+    theme: cosmo
     css: styles.css
     toc: true
 
 editor: visual
-

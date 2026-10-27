@@ -1,9 +1,38 @@
 ---
 title: "Pablo A. Herrera Gálvez"
+
+about: 
+  id: paherreragalvez-heading
+  template: jolla
+  image-shape: rounded
+  image-width: 15em
+  links:
+    - text: Email
+      icon: envelope
+      href: mailto:paherreragalvez@gmail.com
+    - text: GitHub
+      icon: github
+      href: https://github.com/paherreragalvez
+    - text: LinkedIn
+      icon: linkedin
+      href: https://www.linkedin.com/in/paherreragalvez/
+    - text: CV
+      icon: file-text
+      href: CV.pdf
+
+resources:
+  - CV.pdf
+  
 ---
 
-Bienvenid\@ a mi sitio web con Quarto.
+```{html}
+<div style="text-align: center; margin-top: -20px; margin-bottom: 15px; color: gray; font-size: 1.1em;">
+  Santiago, Chile
+</div>
+---
+
+Bienvenid\@ a mi Sitio Web.
 
 Soy Pablo Herrera, economista y analista de datos con experiencia en el sector público, consultoría, investigación aplicada y docencia en estadística en Chile y Alemania.
 
-Para conocer más de mi, puedes acceder a mis perfiles de [LinkedIn](https://www.linkedin.com/in/paherreragalvez/) y [GitHub](#0).
+Estudié Economía en la Universidad de Chile, un Diplomado en Ciencia de Datos en la Universidad Católica y un Magíster en Protección Social en la UAS Bonn-Rhein-Sieg en Alemania.
