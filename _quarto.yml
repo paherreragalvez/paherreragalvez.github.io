@@ -20,7 +20,8 @@ website:
 
 format:
   html:
-    theme: cosmo
+#    theme: cosmo, Lux, Simplex, Journal, Cerulean, Sandstone, United, Flatly, Yeti, Zephyr
+    theme: Zephyr
     css: styles.css
     toc: true
 
