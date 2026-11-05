@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "Pablo A. Herrera Gálvez",
     "section": "",
-    "text": "Santiago, Chile\n\n\nBienvenid@ a mi Sitio Web.\nSoy Pablo Herrera, economista y analista de datos con experiencia en el sector público, consultoría, investigación aplicada y docencia en estadística en Chile y Alemania.\nEstudié Ingeniería Comericial con mención en Economía en la Universidad de Chile, un Diplomado en Ciencia de Datos en la Universidad Católica y un Magíster en Protección Social en la UAS Bonn-Rhein-Sieg en Alemania."
+    "text": "Santiago, Chile\n\n\nBienvenid@ a mi Sitio Web.\nSoy Pablo Herrera, economista y analista de datos con experiencia en el sector público, consultoría, investigación aplicada y docencia en estadística en Chile y Alemania.\nEstudié Ingeniería Comercial con mención en Economía en la Universidad de Chile, un Diplomado en Ciencia de Datos en la Universidad Católica y un Magíster en Protección Social en la UAS Bonn-Rhein-Sieg en Alemania."
   },
   {
     "objectID": "about.html",
@@ -12,5 +12,47 @@
     "title": "About",
     "section": "",
     "text": "About this site\n\n1 + 1\n\n[1] 2"
+  },
+  {
+    "objectID": "repositorio.html",
+    "href": "repositorio.html",
+    "title": "Repositorio de Trabajos",
+    "section": "",
+    "text": "Esta sección incluye distintos materiales que pueden servir a modo de portafolio sobre mi trabajo académico así como de análisis de datos.\n\nDiplomado en Big Data y Ciencia de Datos\nSelección de algunos trabajos desarrollados durante mi Diplomado. Foco principal en trabajo con datos utilizando R y técnicas de Machine Learning como Regresión, Árboles de decisión y Clusters.\n\nUso de Clusters para segmentación de clientes bancarios\nMinería de Datos - Proyecto 1\nMinería de Datos - Proyecto 2\nMinería de Datos - Proyecto 3\n\n\n\nMagíster en Protección Social\nSelección de trabajos desarrollados durante mis estudios de magíster:\n\nM3: Guidance Note sobre Medidas de Promoción para Población Migrante en Chile - Diagnóstico y propuestas para la inserción laboral de población migrante en Chile.\nM3: Policy Brief sobre Transferencias Sociales (Familias en Acción, Colombia) - Análisis sobre el programa de Transferencias Condicionadas en Colombia.\nM7: Ensayo sobre el uso de IA en políticas sociales - Base conceptual para la posterior tesis de magíster.\nM8: Propuesta de reforma a política pública - Análisis contextual, plan de acción, estimación de costos y marco legal.\nM12: Tesis IA en el sector público (Resumen ejecutivo) - “IA en el sector público: Experiencia y desafíos en países en desarrollo”."
+  },
+  {
+    "objectID": "clases.html",
+    "href": "clases.html",
+    "title": "Docencia y Talleres",
+    "section": "",
+    "text": "Material de apoyo utilizado en dos instancias docentes en las que he impartido clases de estadística. Una de ellas para investigadores de la Universidad de Los Lagos, la cual fue complementado con clases de programación en R. El segundo curso fue para estudiantes de primer año del magíster en Protección Social en Alemania."
+  },
+  {
+    "objectID": "clases.html#curso-1-introducción-a-la-estadística-2-sesiones",
+    "href": "clases.html#curso-1-introducción-a-la-estadística-2-sesiones",
+    "title": "Docencia y Talleres",
+    "section": "Curso 1: Introducción a la Estadística (2 Sesiones)",
+    "text": "Curso 1: Introducción a la Estadística (2 Sesiones)\n\nSesión 1: Estadística Descriptiva y Visualización | [PDF]\nSesión 2: Inferencia y Pruebas de Hipótesis | [PDF]\n\ndocs_clases_ulagos_ea_01\ndocs_clases_ulagos_ea_02"
+  },
+  {
+    "objectID": "clases.html#curso-2-estadística-aplicada-y-modelación-7-sesiones",
+    "href": "clases.html#curso-2-estadística-aplicada-y-modelación-7-sesiones",
+    "title": "Docencia y Talleres",
+    "section": "Curso 2: Estadística Aplicada y Modelación (7 Sesiones)",
+    "text": "Curso 2: Estadística Aplicada y Modelación (7 Sesiones)\n\nMódulo 1: Introducción al Análisis Cuantitativo | [PDF]\nMódulo 2: Probabilidades y Distribuciones | [PDF] …\n\ndocs_clases_hbrs_stat_00.pdf\ndocs_clases_hbrs_stat_01.pdf\ndocs_clases_hbrs_stat_02.pdf\ndocs_clases_hbrs_stat_03.pdf\ndocs_clases_hbrs_stat_04.pdf\ndocs_clases_hbrs_stat_05.pdf\ndocs_clases_hbrs_stat_06.pdf\ndocs_clases_hbrs_stat_07.pdf"
+  },
+  {
+    "objectID": "clases.html#universidad-de-los-lagos",
+    "href": "clases.html#universidad-de-los-lagos",
+    "title": "Docencia y Talleres",
+    "section": "Universidad de Los Lagos",
+    "text": "Universidad de Los Lagos\n\nSesión 1: Estadística Descriptiva y Visualización | [PDF]\nSesión 2: Inferencia y Pruebas de Hipótesis | [PDF]"
+  },
+  {
+    "objectID": "clases.html#uas-bonn-rhein-sieg",
+    "href": "clases.html#uas-bonn-rhein-sieg",
+    "title": "Docencia y Talleres",
+    "section": "UAS Bonn-Rhein-Sieg",
+    "text": "UAS Bonn-Rhein-Sieg\n\nIntroducción a la Estadística (Sesión 0) | [PDF]\nEstadística Descriptiva I (Sesión 1) | [PDF]\nEstadística Descriptiva II (Sesión 2) | [PDF]\nProbabilidades (Sesión 3) | [PDF]\nDistribuciones (Sesión 4) | [PDF]\nMuestreo (Sesión 5) | [PDF]\nPruebas de Hipótesis (Sesión 6) | [PDF]\nRegresión Lineal (Sesión 7) | [PDF]"
   }
 ]

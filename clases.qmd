@@ -1,0 +1,24 @@
+---
+title: "Docencia y Talleres"
+description: "Material de soporte y diapositivas de los cursos dictados."
+resources:
+  - clases/*.pdf
+---
+
+Material de apoyo utilizado en dos instancias docentes en las que he impartido clases de estadística. Una de ellas para investigadores de la Universidad de Los Lagos, la cual fue complementado con clases de programación en R. El segundo curso fue para estudiantes de primer año del magíster en Protección Social en Alemania.
+
+## Universidad de Los Lagos
+
+- **Sesión 1: Estadística Descriptiva y Visualización** \| \[[PDF](clases/curso1_sesion1.pdf)\]
+- **Sesión 2: Inferencia y Pruebas de Hipótesis** \| \[[PDF](clases/curso1_sesion2.pdf)\]
+
+## UAS Bonn-Rhein-Sieg
+
+- **Introducción a la Estadística (Sesión 0)** \| \[[PDF](clases/docs_clases_hbrs_stat_00.pdf)\]
+- **Estadística Descriptiva I (Sesión 1)** \| \[[PDF](clases/docs_clases_hbrs_stat_01.pdf)\]
+- **Estadística Descriptiva II (Sesión 2)** \| \[[PDF](clases/docs_clases_hbrs_stat_02.pdf)\]
+- **Probabilidades (Sesión 3)** \| \[[PDF](clases/docs_clases_hbrs_stat_03.pdf)\]
+- **Distribuciones (Sesión 4)** \| \[[PDF](clases/docs_clases_hbrs_stat_04.pdf)\]
+- **Muestreo (Sesión 5)** \| \[[PDF](clases/docs_clases_hbrs_stat_05.pdf)\]
+- **Pruebas de Hipótesis (Sesión 6)** \| \[[PDF](clases/docs_clases_hbrs_stat_06.pdf)\]
+- **Regresión Lineal (Sesión 7)** \| \[[PDF](clases/docs_clases_hbrs_stat_07.pdf)\]

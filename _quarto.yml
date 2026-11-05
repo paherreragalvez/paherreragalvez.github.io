@@ -8,6 +8,10 @@ website:
     left:
       - href: index.qmd
         text: Inicio
+      - href: repositorio.qmd
+        text: Portafolio
+      - href: clases.qmd
+        text: Docencia  
 #    - href: blog.qmd
 #        text: Blog
 #      - href: tutoriales.qmd

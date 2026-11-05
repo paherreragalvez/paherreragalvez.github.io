@@ -24,8 +24,6 @@ resources:
   - CV.pdf
 ---
 
-\`\`\`{html}
-
 ::: {style="text-align: center; margin-top: -20px; margin-bottom: 15px; color: gray; font-size: 1.1em;"}
 Santiago, Chile
 :::
@@ -36,4 +34,4 @@ Bienvenid\@ a mi Sitio Web.
 
 Soy Pablo Herrera, economista y analista de datos con experiencia en el sector público, consultoría, investigación aplicada y docencia en estadística en Chile y Alemania.
 
-Estudié Ingeniería Comericial con mención en Economía en la Universidad de Chile, un Diplomado en Ciencia de Datos en la Universidad Católica y un Magíster en Protección Social en la UAS Bonn-Rhein-Sieg en Alemania.
+Estudié Ingeniería Comercial con mención en Economía en la Universidad de Chile, un Diplomado en Ciencia de Datos en la Universidad Católica y un Magíster en Protección Social en la UAS Bonn-Rhein-Sieg en Alemania.

@@ -1,0 +1,28 @@
+---
+title: "Repositorio de Trabajos"
+description: "Colección de informes, artículos y documentos analíticos anteriores."
+
+resources:
+  - docs/*.pdf
+---
+
+Esta sección incluye distintos materiales que pueden servir a modo de portafolio sobre mi trabajo académico así como de análisis de datos.
+
+### Diplomado en Big Data y Ciencia de Datos
+
+Selección de algunos trabajos desarrollados durante mi Diplomado. Foco principal en trabajo con datos utilizando R y técnicas de Machine Learning como Regresión, Árboles de decisión y Clusters.
+
+- [Uso de Clusters para segmentación de clientes bancarios](docs/docs_diplo_dsapps01.pdf)
+- [Minería de Datos - Proyecto 1](docs/docs_diplo_min01.pdf)
+- [Minería de Datos - Proyecto 2](docs/docs_diplo_min02.pdf)
+- [Minería de Datos - Proyecto 3](docs/docs_diplo_min03.pdf)
+
+### Magíster en Protección Social
+
+Selección de trabajos desarrollados durante mis estudios de magíster:
+
+- **M3:** [Guidance Note sobre Medidas de Promoción para Población Migrante en Chile](docs/msc_migracion.pdf) - Diagnóstico y propuestas para la inserción laboral de población migrante en Chile.
+- **M3:** [Policy Brief sobre Transferencias Sociales (Familias en Acción, Colombia)](docs/msc_cct.pdf) - Análisis sobre el programa de Transferencias Condicionadas en Colombia.
+- **M7:** [Ensayo sobre el uso de IA en políticas sociales](docs/msc_essayai.pdf) - Base conceptual para la posterior tesis de magíster.
+- **M8:** [Propuesta de reforma a política pública](docs/msc_reform.pdf) - Análisis contextual, plan de acción, estimación de costos y marco legal.
+- **M12:** [Tesis IA en el sector público (Resumen ejecutivo)](docs/msc_resumentesis.pdf) - *“IA en el sector público: Experiencia y desafíos en países en desarrollo”*.
