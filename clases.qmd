@@ -2,23 +2,27 @@
 title: "Docencia y Talleres"
 description: "Material de soporte y diapositivas de los cursos dictados."
 resources:
-  - clases/*.pdf
+  - docs/clases/*.pdf
 ---
 
-Material de apoyo utilizado en dos instancias docentes en las que he impartido clases de estadística. Una de ellas para investigadores de la Universidad de Los Lagos, la cual fue complementado con clases de programación en R. El segundo curso fue para estudiantes de primer año del magíster en Protección Social en Alemania.
+Material de apoyo utilizado en dos instancias docentes en las que he impartido clases de estadística.
 
-## Universidad de Los Lagos
+### Universidad de Los Lagos - Estadística Aplicada para la Investigación
 
-- **Sesión 1: Estadística Descriptiva y Visualización** \| \[[PDF](clases/curso1_sesion1.pdf)\]
-- **Sesión 2: Inferencia y Pruebas de Hipótesis** \| \[[PDF](clases/curso1_sesion2.pdf)\]
+Curso para investigadores de la Universidad de Los Lagos. Sesiones complementadas con clases de programación en R.
 
-## UAS Bonn-Rhein-Sieg
+- **Sesión 1** - Tipos de variables, estadística descriptiva, asociación entre variables (correlaciones), normalidad y funciones de distribución, tests de hipótesis. \| \[[PDF](clases/docs_clases_ulagos_ea_01.pdf)\]
+- **Sesión 2** - Tests de hipótesis, tests de normalidad, tests estadísticos frecuentes, regresión. \| \[[PDF](clases/docs_clases_ulagos_ea_02.pdf)\]
 
-- **Introducción a la Estadística (Sesión 0)** \| \[[PDF](clases/docs_clases_hbrs_stat_00.pdf)\]
-- **Estadística Descriptiva I (Sesión 1)** \| \[[PDF](clases/docs_clases_hbrs_stat_01.pdf)\]
-- **Estadística Descriptiva II (Sesión 2)** \| \[[PDF](clases/docs_clases_hbrs_stat_02.pdf)\]
-- **Probabilidades (Sesión 3)** \| \[[PDF](clases/docs_clases_hbrs_stat_03.pdf)\]
-- **Distribuciones (Sesión 4)** \| \[[PDF](clases/docs_clases_hbrs_stat_04.pdf)\]
-- **Muestreo (Sesión 5)** \| \[[PDF](clases/docs_clases_hbrs_stat_05.pdf)\]
-- **Pruebas de Hipótesis (Sesión 6)** \| \[[PDF](clases/docs_clases_hbrs_stat_06.pdf)\]
-- **Regresión Lineal (Sesión 7)** \| \[[PDF](clases/docs_clases_hbrs_stat_07.pdf)\]
+### UAS Bonn-Rhein-Sieg - Curso Preparatorio de Estadística
+
+Curso para estudiantes de primer año del magíster en Protección Social de la UAS Bonn-Rhein-Sieg, en Alemania.
+
+- **Programa e introducción al curso**. \| \[[PDF](clases/docs_clases_hbrs_stat_00.pdf)\]
+- **1. Variables categóricas**. \| \[[PDF](clases/docs_clases_hbrs_stat_01.pdf)\]
+- **2. Múltiples variables categóricas**. \| \[[PDF](clases/docs_clases_hbrs_stat_02.pdf)\]
+- **3. Variables cuantitativas**. \| \[[PDF](clases/docs_clases_hbrs_stat_03.pdf)\]
+- **4. Variables aleatorias y funciones de distribución**. \| \[[PDF](clases/docs_clases_hbrs_stat_04.pdf)\]
+- **5. Medidas de tendencia central**. \| \[[PDF](clases/docs_clases_hbrs_stat_05.pdf)\]
+- **6. Medidas de dispersión**. \| \[[PDF](clases/docs_clases_hbrs_stat_06.pdf)\]
+- **7. Estandarización y Distribución Normal**. \| \[[PDF](clases/docs_clases_hbrs_stat_07.pdf)\]
