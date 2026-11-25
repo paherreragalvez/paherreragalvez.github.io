@@ -1,0 +1,366 @@
+---
+title: "Segmentación de comunas chilenas. Clusters según indicadores de Pobreza Multidimensional."
+description: "Clusterización de comunas usando datos de la Encuesta Casen."
+author: "Pablo A. Herrera Gálvez"
+date: "2026-11-24"
+categories: [Estadística, Machine Learning, Clusters]
+format:
+  html:
+    code-tools: false
+execute:
+  echo: false
+  warning: false
+  message: false
+---
+
+```{r}
+#| warning: false
+################################################################################
+
+#### #| label: fig-distribucion #| fig-cap: "Distribución estimada por tramos" #| warning: false
+
+# Inicio del código
+
+rm(list = ls())
+setwd("C:/00 Pablo/Programacion/")
+
+# Generales manejo de datos
+library(dplyr)
+library(tidyr) # Para funciones de limpieza como replace_na
+library(arrow) # Manejo en formato Parquet
+library(haven) # Formato dta.
+library(scales) # Para normalizar variables (para clusters)
+library(ggplot2) # Visualizaciones
+library(skimr) # Compact and Flexible Summaries of Data
+# Clusters
+library(cluster)
+# Para Mapas
+library(sf) #Estructura y manipulación de datos espaciales
+library(geodata) # Para importar políg
+library(patchwork)
+# Para importar Maestro Comunas
+library(readxl)
+# Para tablas
+library(knitr)
+library(kableExtra)
+
+################################################################################
+# Carga de datos y exploración inicial
+base_maestro_multidim <- read_parquet("R/Proyecto comunas/data/base_maestro_multidim.parquet")
+base2024 <- base_maestro_multidim %>% filter(anio == 2024)
+rm(base_maestro_multidim)
+base2024 <- base2024 %>% select(-anio)
+
+################################################################################
+# Normalización
+base2024 <- base2024 %>% mutate(n_educ  = scales::rescale(prop_educacion),
+                                n_salud = scales::rescale(prop_salud),
+                                n_trab  = scales::rescale(prop_trabajo),
+                                n_viv   = scales::rescale(prop_vivienda))
+
+################################################################################
+# Crear una base limpia sin NA solo con las variables normalizadas
+datos_norm <- base2024 %>% 
+  select(starts_with("n_"))
+
+# Para reproducibilidad
+set.seed(123) # semilla para reproducibilidad
+
+#################################################################################
+# K-means con el k seleccionado (i.e. K=3)
+modelo_km <- kmeans(datos_norm, centers = 3, nstart = 25)
+# Agregar la columna del cluster a la base de datos
+datos_norm <- datos_norm %>% 
+  mutate(cluster = modelo_km$cluster)
+# Agregar a la base original el cluster asignado
+base2024$cluster <- datos_norm$cluster
+```
+
+*Nota técnica: Este análisis cubre únicamente a 139 de las 346 comunas del país. Dichas comunas son elegidas de manera que se cubra al menos el 80% de las viviendas y la población de cada región.*
+
+### Introducción
+
+El uso de clusters es una técnica no supervisada de Machine Learning utilizada para identificar grupos y patrones ocultos. Un uso habitual es la segmentación de clientes en el retail para canalizar campañas de marketing.
+
+En este análisis se crean clusters de comunas chilenas de acuerdo a la proporción de hogares que presentan alguno de los cuatro componentes principales utilizados en la medición de pobreza multidimensional, i.e. Educación, Salud, Trabajo y Vivienda. Los datos utilizados son de la Encuesta Casen del 2024.
+
+Se utilizan 139 comunas como unidad de análisis, para ellas se estima la proporción de hogares que presentan alguna vulnerabilidad. Por ejemplo, en la comuna de Santiago un 8% de los hogares presenta vulnerabilidad Educacional, 18% en Salud, un 31% es vulnerable en la dimensión de Empleo y un 25% se considera vulnerable con respecto a la dimensión de Vivienda.
+
+A nivel nacional, de acuerdo con la siguiente tabla, en promedio un 40% de los hogares son vulnerables en la dimensión trabajo, siendo esta la más preponderante, mientras que la dimensión salud es la menos masiva con un 11% de lo hogares.
+
+```{r}
+#################################################################################
+# Exploración estadística de clusters
+
+#base2024 |> 
+#select(prop_educacion, prop_salud, prop_trabajo, prop_vivienda) |> summary()
+
+base2024 |> 
+  select(
+    Educación = prop_educacion, 
+    Salud     = prop_salud, 
+    Trabajo   = prop_trabajo, 
+    Vivienda  = prop_vivienda
+  ) |> 
+  pivot_longer(everything(), names_to = "Dimensión", values_to = "Valor") |> 
+  summarise(
+    Media   = mean(Valor, na.rm = TRUE),
+    Mínimo  = min(Valor, na.rm = TRUE),
+    Q1      = quantile(Valor, 0.25, na.rm = TRUE),
+    Q2 = median(Valor, na.rm = TRUE),
+    Q3      = quantile(Valor, 0.75, na.rm = TRUE),
+    Máximo  = max(Valor, na.rm = TRUE),
+    .by = Dimensión
+  ) |> 
+  kable(
+    digits = 2,
+    align = "c",
+    caption = " Proporción de hogares vulnerables a nivel comunal, según dimensión de vulnerabilidad."
+  ) |> 
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed"), full_width = FALSE)
+```
+
+### Estimación de Clusters (Método K-means).
+
+Para la creación de clusters, el primer paso fue definir el número de estos. En este caso se utilizaron tres clusters.
+
+El llamado valor K, puede ser elegido complementando dos herramientas:
+
+- Método del Codo (usando la suma cuadrática de las distancias evalúa cuándo deja de disminuir la dispersión interna de los grupos).
+
+- Método de la Silueta (midiendo qué tan cerca está cada observación de su grupo y qué tan separado queda del grupo más cercano.
+
+```{r}
+#################################################################################
+#base2024 %>% 
+#  group_by(cluster) %>% 
+#  summarise(across(c(prop_educacion, prop_salud, prop_trabajo, prop_vivienda), mean))
+
+#names(base2024)
+
+base2024 |> 
+  group_by(cluster) |> 
+  summarise(
+    "N Comunas" = n(),
+    "N Hogares" =  format(sum(poblacion_comunal, na.rm = TRUE), big.mark = ".", decimal.mark = ",", scientific = FALSE),
+    Educación = mean(prop_educacion, na.rm = TRUE),
+    Salud     = mean(prop_salud, na.rm = TRUE),
+    Trabajo   = mean(prop_trabajo, na.rm = TRUE),
+    Vivienda  = mean(prop_vivienda, na.rm = TRUE)
+  ) |> 
+  rename(Cluster = cluster) |> 
+  kable(
+    digits = 2,
+    align = "c",   # Centra todas las columnas de la tabla
+    caption = "Proporción promedio de hogares vulnerables por dimensión de vulnerabilidad, según cluster."
+  ) |> 
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed"), full_width = FALSE)
+
+```
+
+El primer cluster destaca en la dimensión salud y trabajo. El segundo, está compuesto con hogares especialmente vulnerables en educación y poco vulnerables en salud. El tercero, presenta los niveles más bajos de vulnerabilidad en educación, trabajo y en vivienda.
+
+### Análisis de Resultados
+
+No obstante lo anterior, un análisis más detallado de la distribución utilizando box plots, permite observer que los tres grupos muestran diferencias con respecto a las dimensiones de educación y salud. Sin embargo, en las dimensiones trabajo y especialmente en vivienda se observa una alta varianza dentro de los grupos y los resultados se traslapan entre cada cluster.
+
+```{r}
+# Un boxplot por cada variable según el clúster (Datos originales)
+# 1. Agregar oma = c(0, 0, 3, 0) para dejar espacio arriba para el título general
+par(mfrow = c(1, 4), mar = c(4, 4, 3, 1), oma = c(0, 0, 3, 0))
+
+boxplot(prop_educacion ~ cluster, data = base2024, main = "Educación", col = c("darkgoldenrod1", "red", "blue"), ylab = "Proporción", xlab = "Clusters", ylim = c(0, 0.7))
+boxplot(prop_salud ~ cluster,     data = base2024, main = "Salud",     col = c("darkgoldenrod1", "red", "blue"), ylab = "Proporción", xlab = "Clusters", ylim = c(0, 0.7))
+boxplot(prop_trabajo ~ cluster,   data = base2024, main = "Trabajo",   col = c("darkgoldenrod1", "red", "blue"), ylab = "Proporción", xlab = "Clusters", ylim = c(0, 0.7))
+boxplot(prop_vivienda ~ cluster,  data = base2024, main = "Vivienda",  col = c("darkgoldenrod1", "red", "blue"), ylab = "Proporción", xlab = "Clusters", ylim = c(0, 0.7))
+
+# 2. Escribir el título general en el margen exterior superior
+mtext("Proporción de Hogares con cada Vulnerabilidad por Comuna, según Cluster.", outer = TRUE, cex = 1.2, font = 2)
+
+# 3. Restaurar configuración gráfica por defecto
+par(mfrow = c(1, 1), oma = c(0, 0, 0, 0))
+```
+
+Un diagrama de dispersión entre las primeras dos dimensiones (salud y educación) permite ver que los clusters separan bastante bien a las comunas de acuerdo a estos indicadores. Cada observación representa a una comuna y su proporción de hogares vulnerables en cada dimensión.
+
+```{r}
+colores <- c("darkgoldenrod1", "red", "blue")
+plot(base2024$prop_educacion, base2024$prop_salud, 
+     type = "p", 
+     pch = 24,                                                     # Triángulo con contorno
+     col = "black",                                                # Color del contorno
+     bg = colores[as.numeric(as.factor(base2024$cluster))],      # Color del relleno
+#     col = colores[as.numeric(as.factor(datos_norm$cluster))],
+#     pch = 17, # pch = 19 hace que los puntos sean sólidos y más visibles
+     cex = 1.3, # <-- Controla el tamaño de los puntos en el gráfico
+     xlab = "Proporción de Hogares Vulnerables en Educación", 
+     ylab = "Proporción de Hogares Vulnerables en Salud", 
+     main = "Comunas según Vulnerabilidad en Salud y Educación, según Cluster.")
+
+# Agregar leyenda para identificar los clusters
+legend("bottomleft", 
+       legend = c("Cluster 1", "Cluster 2", "Cluster 3"), 
+       col = colores, 
+       pch = 19)
+
+```
+
+Sin embargo al replicar dicho análisis usando los indicadores de trabajo y vivienda, es más difícil observar diferencias entre los grupos obtenidos en la clusterización.
+
+```{r}
+plot(base2024$prop_trabajo, base2024$prop_vivienda, 
+     type = "p", 
+     pch = 24,                                                     # Triángulo con contorno
+     col = "black",                                                # Color del contorno
+     bg = colores[as.numeric(as.factor(base2024$cluster))],      # Color del relleno
+#     col = colores[as.numeric(as.factor(datos_norm$cluster))],
+#     pch = 17, # pch = 19 hace que los puntos sean sólidos y más visibles
+     cex = 1.3, # <-- Controla el tamaño de los puntos en el gráfico
+     xlab = "Proporción de Hogares Vulnerables en Trabajo", 
+     ylab = "Proporción de Hogares Vulnerables en Vivienda", 
+     main = "Comunas según Vulnerabilidad en Trabajo y Vivienda, según Cluster.")
+
+# Agregar leyenda para identificar los clusters
+legend("bottomleft", 
+       legend = c("Cluster 1", "Cluster 2", "Cluster 3"), 
+       col = colores, 
+       pch = 19)
+
+```
+
+### Distribución Geográfica
+
+Por último, se muestra la distribución geográfica de los clusters identificados. La parte izquierda del mapa incluye desde la Región de Arica y Parinacota, hasta la Región del Ñuble. Por su parte la parte derecha del mapa comprende desde la Región del Bío-bío hasta Magallanes.
+
+- Un primer análisis permite observar que las 34 comunas del primer cluster (con alta vulnerabilidad en salud y trabajo), se concentran en la mitad norte del país.
+
+- El segundo grupo y más grande con 57 comunas (especialmente vulnerable en educación y poco vulnerable en salud), se concentra en la mitad sur del país.
+
+- Por último, las 48 comunas del tercer cluster, que arrojan los niveles más bajos de vulnerabilidad en educación, trabajo y en vivienda, están presentes de manera bastante pareja en todo el territorio.
+
+```{r}
+# IMPORTAR MAPAS PAÍSES ########################################################
+
+chile_gd3 <- gadm("Chile", level = 3, path = tempdir()) |> st_as_sf()
+chile_gd3 <- chile_gd3 |> select(NAME_1, NAME_2, NAME_3, geometry)
+chile_gd3 <- chile_gd3 |> rename(nombre_region = NAME_1,
+                                 nombre_provincia = NAME_2,
+                                 nombre_comuna = NAME_3)
+
+# COMUNAS CASEN
+maestro_comunas <- read_excel("C:/00 Pablo/Programacion/BBDD/CUT-2018/CUT_2018_v04.xls")
+maestro_comunas <- maestro_comunas |> select("Código Comuna 2018", "Nombre Comuna")
+maestro_comunas <- maestro_comunas |> rename(codigo_comuna = "Código Comuna 2018", nombre_comuna = "Nombre Comuna")
+
+# AGREGAR CLUSTER A MAESTRO
+
+base2024 <- base2024 |> rename(codigo_comuna = comuna)
+maestro_comunas$codigo_comuna <- as.double(maestro_comunas$codigo_comuna)
+
+maestro_comunas <- maestro_comunas |> left_join(base2024, by = "codigo_comuna")
+maestro_comunas <- maestro_comunas |> select(codigo_comuna, nombre_comuna, cluster)
+
+chile_gd3_cod <- chile_gd3 |> left_join(maestro_comunas, by = "nombre_comuna")
+
+```
+
+```{r}
+
+```
+
+```{r}
+
+# 1. Vectores de regiones divididos en dos mitades (Arica-Ñuble y Biobío-Magallanes)
+regiones_norte <- c(
+  "Arica y Parinacota",
+  "Tarapacá",
+  "Antofagasta",
+  "Atacama",
+  "Coquimbo",
+  "Valparaíso",
+  "Santiago Metropolitan",
+  "Libertador General Bernardo O'Hi",
+  "Maule",
+  "Ñuble"
+)
+
+regiones_sur <- c(
+  "Bío-Bío",
+  "Araucanía",
+  "Los Ríos",
+  "Los Lagos", # <-- Coma agregada
+  "Aysén del General Ibañez del Cam",
+  "Magallanes y Antártica Chilena"
+)
+
+# 2. Función auxiliar para dibujar cada mitad
+crear_seccion <- function(datos_filtrados, xlim_seccion) {
+  ggplot(data = datos_filtrados) +
+    geom_sf(aes(fill = factor(cluster)), color = NA) +
+    coord_sf(expand = FALSE, xlim = xlim_seccion) +
+    scale_fill_manual(
+      values = colores,
+      na.value = "gray85",
+      labels = c("Cluster 1", "Cluster 2", "Cluster 3", "Sin datos"),
+      name = "Cluster",
+      drop = FALSE
+    ) +
+    theme_void()
+}
+
+# 3. Generamos los 2 mapas (c(-74, -66) abarca cómodamente desde Arica hasta Ñuble)
+mapa_norte <- chile_gd3_cod |> filter(nombre_region %in% regiones_norte) |> crear_seccion(c(-74, -66))
+mapa_sur   <- chile_gd3_cod |> filter(nombre_region %in% regiones_sur)   |> crear_seccion(c(-77, -65))
+
+# 4. Unimos ambas mitades lado a lado y unificamos la leyenda
+(mapa_norte + mapa_sur) +
+  plot_layout(guides = "collect") +
+  plot_annotation(
+    title = "Distribución Geográfica de Clusters"
+  ) &
+  theme(legend.position = "right")
+```
+
+```{r}
+
+#base2024 |> filter(codigo_comuna == "13101") |> View()
+
+# MAPA
+
+#chile_gd3_cod_stgo <- chile_gd3_cod |> filter(nombre_region == "Santiago Metropolitan")
+#chile_gd3_cod_stgo <- chile_gd3_cod |> filter(nombre_provincia == "Santiago")
+
+#ggplot(data = chile_gd3_cod_stgo) +
+#  geom_sf(aes(fill = factor(cluster)), color = NA, linewidth = 0.1) +
+#    coord_sf(expand = FALSE) +
+
+#  scale_fill_manual(
+#    values = colores,
+#    na.value = "gray85",          # Color gris para los NA
+#    labels = c("Cluster 1", "Cluster 2", "Cluster 3", "Sin datos"),
+#    name = "Cluster"
+#  ) +
+#  theme_void() +                  # Elimina ejes y cuadrícula de coordenadas
+#  labs(
+#    title = "Distribución Geográfica de Clusters, Provincia de Santiago"
+#  )
+
+```
+
+```{r}
+# Test de diferencias entre clusters según las variables.
+# Prosa
+    # Mencionar que siempre se trabaja en comunas.
+```
+
+### Consideraciones Técnicas
+
+**Sobre la representatividad de las estimaciones a nivel comunal.**
+
+- Desde 2017, la encuesta se ha enfocado en entregar representatividad a nivel nacional, regional y por área urbana/rural.
+
+- De todas maneras, el Ministerio de Desarrollo Social dispone una base auxiliar que permite hacer estimaciones representativas a nivel comunal. Dichas comunas son elegidas de manera que se cubra al menos el 80% de las viviendas y población de cada región.
+
+- Como resultado, este análisis cubre únicamente a 139 de las 346 comunas del país.
+
+- Para ver más información sobre la Encuesta Casen, puedes revisar los manuales de la Encuesta ingresando al sitio web del Observatorio Social en el siguiente \[enlace\](<https://observatorio.ministeriodesarrollosocial.gob.cl/encuesta-casen-2024>).

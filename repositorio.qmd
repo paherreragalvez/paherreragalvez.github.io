@@ -1,28 +1,29 @@
 ---
 title: "Repositorio de Trabajos"
-description: "Colección de informes, artículos y documentos analíticos anteriores."
 
 resources:
   - docs/*.pdf
 ---
 
-Esta sección incluye distintos materiales que pueden servir a modo de portafolio sobre mi trabajo académico así como de análisis de datos.
+Esta sección incluye distintos productos que sirven como portafolio de mi trabajo análisis cuantitativo y estudios aplicados a políticas públicas
+
+### Destacado
+
+- Segmentación de comunas chilenas según Pobreza Multidimensional usando Machine Learning (Clustering). \[[Leer](posts/clusters_pobrezamulti/nombre_de_tu_archivo.qmd)\]
 
 ### Diplomado en Big Data y Ciencia de Datos
 
-Selección de algunos trabajos desarrollados durante mi Diplomado. Foco principal en trabajo con datos utilizando R y técnicas de Machine Learning como Regresión, Árboles de decisión y Clusters.
+Diplomado con foco principal en trabajo con datos utilizando R y técnicas de Machine Learning.
 
-- Uso de **clusters** para segmentación de clientes bancarios. \| \[[PDF](docs/docs_diplo_dsapps01.pdf)\]
-- Identificación de valores atípicos y uso de **regresiones** para predicción del PIB de 188 economías.  \| \[[PDF](docs/docs_diplo_min01.pdf)\]
-- Uso de **árboles de decisión** y **KNN** para generar clasificación de riesgo de clientes bancarios. \| \[[PDF](docs/docs_diplo_min02.pdf)\]
-- Otro caso de uso de **clusters** para segmentación de clientes bancarios. \| \[[PDF](docs/docs_diplo_min03.pdf)\]
+- Identificación de valores atípicos y uso de **regresiones** para predicción del PIB de 188 economías. \[[PDF](docs/docs_diplo_min01.pdf)\]
+- Uso de **árboles de decisión** y **KNN** para generar clasificación de riesgo de clientes bancarios. \[[PDF](docs/docs_diplo_min02.pdf)\]
 
 ### Magíster en Protección Social
 
-Selección de trabajos desarrollados durante mis estudios de magíster.
+Programa de políticas públicas enfocado en sistemas de seguridad social (pensiones, salud y desempleo), utilizando métodos mixtos para el diagnóstico, diseño, gestión y análisis presupuestario y regulatorio de programas.
 
-- **Guidance Note sobre Medidas de Promoción para Población Migrante en Chile** - Diagnóstico y propuestas para la inserción laboral de población migrante en Chile. \| \[[PDF](docs/docs_msc_migracion.pdf)\]
-- **Policy Brief sobre Transferencias Sociales (Familias en Acción, Colombia)** - Análisis sobre el programa de Transferencias Condicionadas en Colombia. \| \[[PDF](docs/docs_msc_cct.pdf)\]
-- **Ensayo sobre el uso de IA en políticas sociales** - Base conceptual para la posterior tesis de magíster. \| \[[PDF](docs/docs_msc_essayai.pdf)\]
-- **Propuesta de reforma a política pública** - Análisis contextual, plan de acción, estimación de costos y marco legal. \| \[[PDF](docs/docs_msc_reform.pdf)\]
-- **Tesis IA en el sector público (Resumen ejecutivo)** - *“IA en el sector público: Experiencia y desafíos en países en desarrollo”*. \| \[[PDF](docs/docs_msc_resumentesis.pdf)\]
+- Diagnóstico y propuestas para la inserción laboral de población migrante en Chile. \[[PDF](docs/docs_msc_migracion.pdf)\]
+- Policy Brief sobre Familias en Acción, programa de Transferencias Condicionadas en Colombia. \[[PDF](docs/docs_msc_cct.pdf)\]
+- Ensayo sobre el uso de IA en políticas sociales (base conceptual para mi posterior tesis de Magíster). \[[PDF](docs/docs_msc_essayai.pdf)\]
+- Propuesta de reforma para la extensión de educación a nivel pre escolar en Chile. Análisis contextual, plan de acción, estimación de costos y marco legal. \[[PDF](docs/docs_msc_reform.pdf)\]
+- Tesis de Grado (metodología y principales hallazgos) - *“IA en el sector público: Experiencia y desafíos en países en desarrollo”*. \[[PDF](docs/docs_msc_resumentesis.pdf)\]

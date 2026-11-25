@@ -1,0 +1,87 @@
+---
+title: "Análisis Macroeconómico Chile vs. Resto del Mundo."
+description: "Volumen 2."
+author: "Pablo A. Herrera Gálvez"
+date: "2026-11-24"
+categories: [Estadística, Economía]
+format:
+  html:
+    code-tools: true
+execute:
+  echo: false
+  warning: false
+  message: false
+---
+
+### Introducción
+
+- Resiliencia Externa y Control Inflacionario (Sector Externo y Estabilidad de Precios)
+
+- PCPIPCH (Inflación Promedio)
+
+- PCPIEPCH (Inflación Fin Periodo)
+
+- BCA_NGDPD (Cuenta Corriente % PIB)
+
+- TX_RPCH (Volumen Exportaciones)
+
+- g1_latam + g2_top_world (EE.UU. / Eurozona)
+
+- Analizar cómo una economía abierta absorbe shocks externos: el fuerte déficit en cuenta corriente post-pandemia, el ajuste del consumo y la rápida reacción de política monetaria para bajar la inflación frente a sus pares.
+
+```{r}
+#| warning: false
+################################################################################
+# https://gemini.google.com/app/4218fe2ab1d50518
+
+#### #| label: fig-distribucion #| fig-cap: "Distribución estimada por tramos" #| warning: false
+
+
+```
+
+```{r}
+
+```
+
+```{r}
+
+
+```
+
+```{r}
+
+
+```
+
+```{r}
+
+
+```
+
+```{r}
+
+
+```
+
+```{r}
+
+
+```
+
+```{r}
+
+```
+
+```{r}
+
+
+```
+
+```{r}
+
+
+```
+
+```{r}
+
+```

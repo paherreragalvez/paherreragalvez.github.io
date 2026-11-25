@@ -1,28 +1,27 @@
 ---
 title: "Docencia y Talleres"
-description: "Material de soporte y diapositivas de los cursos dictados."
 resources:
   - docs/clases/*.pdf
 ---
 
 Material de apoyo utilizado en dos instancias docentes en las que he impartido clases de estadística.
 
-### Universidad de Los Lagos - Estadística Aplicada para la Investigación
+### U. Los Lagos - Estadística Aplicada para la Investigación
 
 Curso para investigadores de la Universidad de Los Lagos. Sesiones complementadas con clases de programación en R.
 
-- **Sesión 1** - Tipos de variables, estadística descriptiva, asociación entre variables (correlaciones), normalidad y funciones de distribución, tests de hipótesis. \| \[[PDF](clases/docs_clases_ulagos_ea_01.pdf)\]
-- **Sesión 2** - Tests de hipótesis, tests de normalidad, tests estadísticos frecuentes, regresión. \| \[[PDF](clases/docs_clases_ulagos_ea_02.pdf)\]
+- Sesión 1 - Tipos de variables, estadística descriptiva, asociación entre variables (correlaciones), normalidad y funciones de distribución, tests de hipótesis. \[[PDF](clases/docs_clases_ulagos_ea_01.pdf)\]
+- Sesión 2 - Tests de hipótesis, tests de normalidad, tests estadísticos frecuentes, regresión. \[[PDF](clases/docs_clases_ulagos_ea_02.pdf)\]
 
 ### UAS Bonn-Rhein-Sieg - Curso Preparatorio de Estadística
 
 Curso para estudiantes de primer año del magíster en Protección Social de la UAS Bonn-Rhein-Sieg, en Alemania.
 
-- **Programa e introducción al curso**. \| \[[PDF](clases/docs_clases_hbrs_stat_00.pdf)\]
-- **1. Variables categóricas**. \| \[[PDF](clases/docs_clases_hbrs_stat_01.pdf)\]
-- **2. Múltiples variables categóricas**. \| \[[PDF](clases/docs_clases_hbrs_stat_02.pdf)\]
-- **3. Variables cuantitativas**. \| \[[PDF](clases/docs_clases_hbrs_stat_03.pdf)\]
-- **4. Variables aleatorias y funciones de distribución**. \| \[[PDF](clases/docs_clases_hbrs_stat_04.pdf)\]
-- **5. Medidas de tendencia central**. \| \[[PDF](clases/docs_clases_hbrs_stat_05.pdf)\]
-- **6. Medidas de dispersión**. \| \[[PDF](clases/docs_clases_hbrs_stat_06.pdf)\]
-- **7. Estandarización y Distribución Normal**. \| \[[PDF](clases/docs_clases_hbrs_stat_07.pdf)\]
+- Programa e introducción al curso. \[[PDF](clases/docs_clases_hbrs_stat_00.pdf)\]
+- Sesión 1 - Variables categóricas. \[[PDF](clases/docs_clases_hbrs_stat_01.pdf)\]
+- Sesión 2 - Múltiples variables categóricas. \[[PDF](clases/docs_clases_hbrs_stat_02.pdf)\]
+- Sesión 3 - Variables cuantitativas. \[[PDF](clases/docs_clases_hbrs_stat_03.pdf)\]
+- Sesión 4 - Variables aleatorias y funciones de distribución. \[[PDF](clases/docs_clases_hbrs_stat_04.pdf)\]
+- Sesión 5 - Medidas de tendencia central. \[[PDF](clases/docs_clases_hbrs_stat_05.pdf)\]
+- Sesión 6 - Medidas de dispersión. \[[PDF](clases/docs_clases_hbrs_stat_06.pdf)\]
+- Sesión 7 - Estandarización y Distribución Normal. \[[PDF](clases/docs_clases_hbrs_stat_07.pdf)\]
