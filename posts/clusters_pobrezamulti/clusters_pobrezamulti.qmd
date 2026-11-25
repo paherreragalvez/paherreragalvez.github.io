@@ -363,4 +363,4 @@ mapa_sur   <- chile_gd3_cod |> filter(nombre_region %in% regiones_sur)   |> crea
 
 - Como resultado, este análisis cubre únicamente a 139 de las 346 comunas del país.
 
-- Para ver más información sobre la Encuesta Casen, puedes revisar los manuales de la Encuesta ingresando al sitio web del Observatorio Social en el siguiente \[enlace\](<https://observatorio.ministeriodesarrollosocial.gob.cl/encuesta-casen-2024>).
+- Para ver más información sobre la Encuesta Casen, puedes revisar los manuales de la Encuesta ingresando al sitio web del Observatorio Social en el siguiente [enlace](https://observatorio.ministeriodesarrollosocial.gob.cl/encuesta-casen-2024).
